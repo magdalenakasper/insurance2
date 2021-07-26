@@ -31,8 +31,11 @@ public class InsuranceTypeServlet extends HttpServlet {
         Optional<InsuranceType> optionalInsuranceType = mapper.toModel(req);
         if (optionalInsuranceType.isPresent()) {
             service.create(optionalInsuranceType.get());
+            getServletContext().getRequestDispatcher("/insurance-type/accepted-info.jsp")
+                    .forward(req, resp);
         } else {
-
+            getServletContext().getRequestDispatcher("/insurance-type/not-accepted-info.jsp")
+                    .forward(req, resp);
         }
     }
 }
